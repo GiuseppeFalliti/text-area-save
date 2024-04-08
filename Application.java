@@ -157,7 +157,7 @@ public class Application extends JFrame {
         /**
          * panello secondario per i bottoni
          */
-        JPanel panelButton = new JPanel(new FlowLayout());
+        JPanel panelButton = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         JButton save = new JButton("salva");
         save.addActionListener(e1->{
@@ -169,6 +169,19 @@ public class Application extends JFrame {
                 exportCSV();
             }
         });
+        JButton loadFile = new JButton("carica file");
+        loadFile.addActionListener(e2->{
+           if (textArea.getText().isEmpty()) {
+            importCSV();
+        }
+            else{
+                
+                JOptionPane.showMessageDialog(null, "svuotare la JtextArea per importare il testo");
+
+            } 
+            
+          
+        });
     
   
     
@@ -177,6 +190,7 @@ public class Application extends JFrame {
         menuBar.add(editMenu);
         setJMenuBar(menuBar);
         panelButton.add(save);
+        panelButton.add(loadFile);
         cp.add(scrollPane);
         cp.add(panelButton, BorderLayout.SOUTH);
     }
@@ -197,13 +211,28 @@ public class Application extends JFrame {
         String filePath = "C:\\Users\\giuseppe\\Downloads\\fileCSV\\text2.txt"; 
     
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
-    
-            
             bw.write(textArea.getText()  + "\n");           
                 
-           JOptionPane.showMessageDialog(this,"File CSV creato con successo!");
+        JOptionPane.showMessageDialog(this,"File CSV creato con successo!");
     
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void importCSV() {
+        String filePath = "C:\\Users\\giuseppe\\Downloads\\fileCSV\\text2.txt";
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            
+            
+            String line=textArea.getText();
+            while ((line = br.readLine()) != null) {
+                textArea.append(line);
+                    
+                }   
+          
+          JOptionPane.showMessageDialog(this,"Importazione completata! \n");
+            } catch (IOException e) {
             e.printStackTrace();
         }
     }
