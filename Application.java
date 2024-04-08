@@ -1,3 +1,4 @@
+import javax.print.DocFlavor.STRING;
 import javax.swing.*;
 
 
@@ -24,6 +25,8 @@ public class Application extends JFrame {
     private Preferences preferences;
     private Dialog dialog;
     private JTextArea textArea;
+    private static String namefile;
+    private static String namefile2;
 
     public Application() {
         super();
@@ -161,14 +164,23 @@ public class Application extends JFrame {
 
         JButton save = new JButton("salva");
         save.addActionListener(e1->{
-            if (textArea.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Non ci sono testo da salvare", "Errore",JOptionPane.ERROR_MESSAGE);
-                                              
-            }
-            else{
-                exportCSV();
-            }
-        });
+           
+                    if (textArea.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Non ci sono testo da salvare", "Errore",JOptionPane.ERROR_MESSAGE);
+                                                      
+                    }
+                    else{
+                        exportCSV();
+                    }
+                   });
+                              
+                   
+
+            
+          
+     
+
+
         JButton loadFile = new JButton("carica file");
         loadFile.addActionListener(e2->{
            if (textArea.getText().isEmpty()) {
@@ -208,7 +220,9 @@ public class Application extends JFrame {
         this.setVisible(true);
     }
     public void exportCSV() {
-        String filePath = "C:\\Users\\giuseppe\\Downloads\\fileCSV\\text2.txt"; 
+        namefile= JOptionPane.showInputDialog(this,"inserire il nome del file");
+        
+        String filePath = "C:\\Users\\giuseppe\\Downloads\\fileCSV\\"+namefile +".txt"; 
     
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             bw.write(textArea.getText()  + "\n");           
@@ -220,7 +234,8 @@ public class Application extends JFrame {
         }
     }
     public void importCSV() {
-        String filePath = "C:\\Users\\giuseppe\\Downloads\\fileCSV\\text2.txt";
+        namefile2= JOptionPane.showInputDialog(this,"inserire il nome del file da caricare");
+        String filePath = "C:\\Users\\giuseppe\\Downloads\\fileCSV\\"+namefile2+".txt";
         
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             
