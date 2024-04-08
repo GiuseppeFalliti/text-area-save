@@ -1,7 +1,5 @@
 import javax.print.DocFlavor.STRING;
 import javax.swing.*;
-
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -227,7 +225,7 @@ public class Application extends JFrame {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             bw.write(textArea.getText()  + "\n");           
                 
-        JOptionPane.showMessageDialog(this,"File CSV creato con successo!");
+        JOptionPane.showMessageDialog(this,"File txt creato con successo!");
     
         } catch (IOException e) {
             e.printStackTrace();
