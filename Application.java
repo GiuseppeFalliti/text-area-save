@@ -194,7 +194,7 @@ public class Application extends JFrame {
         this.setVisible(true);
     }
     public void exportCSV() {
-        String filePath = "C:\\Users\\giuseppe\\Downloads\\fileCSV\\text2.csv"; 
+        String filePath = "C:\\Users\\giuseppe\\Downloads\\fileCSV\\text2.txt"; 
     
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
     
